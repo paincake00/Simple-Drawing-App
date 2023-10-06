@@ -2,7 +2,7 @@ package ru.vsu.cs;
 
 import java.awt.*;
 
-public class Sisif {
+public class Sisif implements Drawable {
     private int x;
     private int y;
     private int width;
@@ -17,27 +17,9 @@ public class Sisif {
         this.color = color;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    void draw(final Graphics gr) {
+    @Override
+    public void draw(final Graphics gr, int x) {
+            this.x = x;
         Graphics2D g = (Graphics2D) gr;
 
         // alien

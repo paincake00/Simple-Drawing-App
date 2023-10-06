@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class DrawPanel extends JPanel implements ActionListener {
 
@@ -13,8 +14,7 @@ public class DrawPanel extends JPanel implements ActionListener {
     private int PANEL_WIDTH;
     private Timer timer;
     private int ticksFromStart = 400;
-    private Sisif sisif;
-    private Background bg;
+    ArrayList<Drawable> graphicsObjs;
     private static int xPos;
 
     public DrawPanel(int width, int height, final int timerDelay) {
@@ -22,9 +22,10 @@ public class DrawPanel extends JPanel implements ActionListener {
         this.PANEL_HEIGHT = height;
         timer = new Timer(timerDelay, this);
 
+        graphicsObjs = new ArrayList<>();
 
-        this.bg = new Background(0, 0, PANEL_WIDTH, PANEL_HEIGHT, new Color(0, 95, 140));
-        this.sisif = new Sisif(PANEL_WIDTH / 2, PANEL_HEIGHT / 2, 100, 100, Color.GRAY);
+        graphicsObjs.add(new Background(0, 0, PANEL_WIDTH, PANEL_HEIGHT, new Color(0, 95, 140)));
+        graphicsObjs.add(new Sisif(PANEL_WIDTH / 2, PANEL_HEIGHT / 2, 100, 100, Color.GRAY));
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -40,9 +41,9 @@ public class DrawPanel extends JPanel implements ActionListener {
     @Override
     public void paint(final Graphics g) {
         super.paint(g);
-        bg.draw(g);
-        sisif.setX(ticksFromStart);
-        sisif.draw(g);
+        for (Drawable obj : graphicsObjs) {
+            obj.draw(g, ticksFromStart);
+        }
     }
 
     @Override

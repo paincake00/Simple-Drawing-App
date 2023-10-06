@@ -2,7 +2,7 @@ package ru.vsu.cs;
 
 import java.awt.*;
 
-public class Background {
+public class Background implements Drawable {
     private int x;
     private int y;
     private int width;
@@ -17,26 +17,8 @@ public class Background {
         this.color = color;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-    public void setColor(Color color) {
-        this.color = color;
-    }
-    public void draw(Graphics gr) {
-
+    @Override
+    public void draw(Graphics gr, int x) {
         Graphics2D g = (Graphics2D) gr;
 
         // Draw the sky
